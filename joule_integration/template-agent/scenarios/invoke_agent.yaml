@@ -1,0 +1,13 @@
+description: Call this scenario when you want to access data of the template project
+
+target:
+  type: function
+  name: call_agent
+  parameters:
+    - name: contextId
+      value: $capability_context.contextId
+
+
+capability_context:
+    - name: contextId
+      value: $target_result.contextId

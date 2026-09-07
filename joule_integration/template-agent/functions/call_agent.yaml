@@ -1,0 +1,28 @@
+parameters:
+  - name: contextId
+    optional: true
+
+action_groups:
+  - actions:
+      - type: agent-request
+        system_alias: TemplateAgent
+        agent_type: remote
+        body: >
+          <? contextId == null || contextId.isEmpty()
+             ? null
+             : '{ "contextId": "' + contextId + '" }' ?>
+        result_variable: result
+
+      - type: set-variables
+        variables:
+          - name: contextId
+            value: <? result.body.contextId ?>
+
+      - type: message
+        message:
+          type: text
+          content: "<? result.body.status.message.parts[0].text ?>"
+          markdown: true
+
+result:
+  contextId: "<? contextId ?>"

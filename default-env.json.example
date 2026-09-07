@@ -1,0 +1,48 @@
+{
+  "PORT": 3000,
+  "VCAP_SERVICES": {
+    "xsuaa": [
+      {
+        "name": "btp-nodejs-agent-xsuaa",
+        "label": "xsuaa",
+        "tags": ["xsuaa"],
+        "credentials": {
+          "clientid": "sb-<xsappname>!<instance-id>",
+          "clientsecret": "<client-secret>",
+          "url": "https://<subdomain>.authentication.<region>.hana.ondemand.com",
+          "uaadomain": "<region>.hana.ondemand.com",
+          "xsappname": "<xsappname>!<instance-id>"
+        }
+      }
+    ],
+    "aicore": [
+      {
+        "name": "btp-nodejs-agent-aicore",
+        "label": "aicore",
+        "tags": ["aicore"],
+        "credentials": {
+          "clientid": "<client-id>",
+          "clientsecret": "<client-secret>",
+          "url": "https://api.ai.<region>.hana.ondemand.com",
+          "identityzone": "<subdomain>",
+          "serviceurls": {
+            "AI_API_URL": "https://api.ai.<region>.hana.ondemand.com"
+          }
+        }
+      }
+    ],
+    "destination": [
+      {
+        "name": "btp-nodejs-agent-destination",
+        "label": "destination",
+        "tags": ["destination"],
+        "credentials": {
+          "clientid": "<client-id>",
+          "clientsecret": "<client-secret>",
+          "uri": "https://destination-configuration.cfapps.<region>.hana.ondemand.com",
+          "url": "https://<subdomain>.authentication.<region>.hana.ondemand.com"
+        }
+      }
+    ]
+  }
+}

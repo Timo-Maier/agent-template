@@ -1,0 +1,10 @@
+{
+  "xsappname": "btp-nodejs-agent",
+  "tenant-mode": "dedicated",
+  "oauth2-configuration": {
+    "token-validity": 43200,
+    "redirect-uris": [
+      "http://localhost:3001/callback"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+schema_version: 3.27.0
+
+metadata:
+  namespace: joule.ext
+  name: template_agent_a2a
+  version: 1.0.0
+  display_name: "Template Agent A2A Connector"
+  description: Example Agent for A2A Integration into Joule.
+
+system_aliases:
+  TemplateAgent:
+    destination: Template_Agent

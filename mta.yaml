@@ -1,0 +1,45 @@
+_schema-version: "3.1"
+ID: btp-nodejs-agent
+version: 1.0.0
+description: Agent template for SAP BTP
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - sh scripts/build-srv.sh
+
+modules:
+  - name: btp-nodejs-agent-srv
+    type: nodejs
+    path: gen/src
+    parameters:
+      memory: 512M
+      disk-quota: 512M
+      buildpack: nodejs_buildpack
+    properties:
+      AGENT_URL: https://${default-url}
+    requires:
+      - name: btp-nodejs-agent-xsuaa
+      - name: ai-core-instance
+      - name: btp-nodejs-agent-destination
+
+resources:
+  - name: btp-nodejs-agent-xsuaa
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+
+  - name: ai-core-instance
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: aicore
+      service-plan: extended
+
+  - name: btp-nodejs-agent-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
